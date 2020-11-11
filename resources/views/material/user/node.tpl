@@ -104,6 +104,10 @@
                         <div class="node-cardgroup">
                     {$class=-1}
                     {foreach $nodes as $node}
+{if ($node['class'] > $user->class || $node['group'] != $user->node_group) }
+{if $node@last}</div>{/if}
+{continue}
+{/if}
                         {if $node['class'] != $class}
                             {$class = $node['class']}
                             {if !$node@first}</div>{/if}
@@ -233,6 +237,9 @@
                                 <div class="tile-wrap">
                                     {$class = -1}
                                     {foreach $nodes as $node}
+{if ($node['class'] > $user->class || $node['group'] != $user->node_group) }
+{continue}
+{/if}
                                         {if $node['class'] != $class}
                                             {$class = $node['class']}
                                             <p class="card-heading">{if $class == 0}普通{else}VIP {$node['class']} {/if}用户节点</p>
